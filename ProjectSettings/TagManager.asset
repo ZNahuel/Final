@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - ground
+  - Coin
+  - wall
+  - CamCol
+  - InteracionZone
   layers:
   - Default
   - TransparentFX

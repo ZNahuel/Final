@@ -27,6 +27,11 @@ public class PlayerMoves : MonoBehaviour
     public int velCorrer;
 
 
+    public GameObject ObjectToPickup;
+    public GameObject PickedObj;
+    public Transform interactionZone;
+
+
     void Start()
     {
         icanJump = false;
@@ -108,6 +113,32 @@ public class PlayerMoves : MonoBehaviour
         else
         {
             falling();
+        }
+
+        if (ObjectToPickup != null && ObjectToPickup.GetComponent<PickeableObj>().isPickeable == true && PickedObj == null)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                PickedObj = ObjectToPickup;
+                PickedObj.GetComponent<PickeableObj>().isPickeable = false;
+                PickedObj.transform.SetParent(interactionZone);
+                PickedObj.transform.position = interactionZone.position;
+                PickedObj.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+                PickedObj.GetComponent<Rigidbody>().useGravity = false;
+                PickedObj.GetComponent<Rigidbody>().isKinematic = true;
+
+            }
+        }
+        else if (PickedObj != null)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                PickedObj.GetComponent<PickeableObj>().isPickeable = true;
+                PickedObj.transform.SetParent(null);
+                PickedObj.GetComponent<Rigidbody>().useGravity = true;
+                PickedObj.GetComponent<Rigidbody>().isKinematic = false;
+                PickedObj = null;
+            }
         }
     }
     public void falling()

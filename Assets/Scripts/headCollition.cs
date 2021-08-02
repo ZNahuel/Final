@@ -9,11 +9,14 @@ public class headCollition : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        contadorDeColision++;
+        if (other.tag != "CamCol")
+        {
+            contadorDeColision = 1;
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        contadorDeColision--;
+        contadorDeColision = 0;
     }
 }

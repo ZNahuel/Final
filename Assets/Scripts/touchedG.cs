@@ -5,9 +5,8 @@ using UnityEngine;
 public class touchedG : MonoBehaviour
 {
     public PlayerMoves playerMoves;
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-
             playerMoves.icanJump = true;
     }
     private void OnTriggerExit(Collider other)
