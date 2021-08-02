@@ -788,11 +788,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53fe2ad9d2d8d7540828bf749265c0ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runSpeed: 1.8
+  runSpeed: 2
   rotationSpeed: 150
   animator: {fileID: 423365369}
   rb: {fileID: 423365368}
-  forceeJump: 7
+  forceeJump: 4
   icanJump: 0
   velInicial: 0
   velAgachado: 0
@@ -802,6 +802,7 @@ MonoBehaviour:
   HeadCollition: {fileID: 1498930396}
   eAgachado: 0
   velCorrer: 5
+  velBox: 3
   ObjectToPickup: {fileID: 0}
   PickedObj: {fileID: 0}
   interactionZone: {fileID: 1553774417}
@@ -955,6 +956,7 @@ GameObject:
   - component: {fileID: 487832852}
   - component: {fileID: 487832851}
   - component: {fileID: 487832850}
+  - component: {fileID: 487832853}
   m_Layer: 0
   m_Name: GameObjectBox
   m_TagString: Untagged
@@ -1006,6 +1008,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &487832853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 487832849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a7047810f2d90a44b5547d193f7353c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMoves: {fileID: 423365366}
 --- !u!1 &511810139
 GameObject:
   m_ObjectHideFlags: 0
@@ -3133,7 +3148,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1869792783}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.11, y: 2.0280366, z: -7.38}
+  m_LocalPosition: {x: 6.81, y: 2.0280366, z: -2.94}
   m_LocalScale: {x: 2.14, y: 0.8, z: 2.04}
   m_Children: []
   m_Father: {fileID: 0}

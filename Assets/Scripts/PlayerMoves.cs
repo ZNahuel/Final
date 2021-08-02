@@ -26,7 +26,7 @@ public class PlayerMoves : MonoBehaviour
 
     public int velCorrer;
 
-
+    public float velBox = 3;
     public GameObject ObjectToPickup;
     public GameObject PickedObj;
     public Transform interactionZone;
@@ -46,7 +46,7 @@ public class PlayerMoves : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKey(KeyCode.LeftShift)&& !eAgachado && icanJump)
+        if (Input.GetKey(KeyCode.LeftShift)&& !eAgachado && icanJump && PickedObj == null)
         {
             runSpeed = velCorrer;
             if (y > 0)
@@ -78,7 +78,7 @@ public class PlayerMoves : MonoBehaviour
         animator.SetFloat("velY", y);
         if (icanJump)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space)&& PickedObj == null)
             {
                 animator.SetBool("jump", true);
                 rb.AddForce(new Vector3(0, forceeJump, 0), ForceMode.Impulse);
@@ -87,12 +87,14 @@ public class PlayerMoves : MonoBehaviour
             {
                 animator.SetBool("crounch", true);
                 //runSpeed = velAgachado;
+                if (PickedObj == null)
+                {
+                    colAgachado.enabled = true;
+                    colParado.enabled = false;
 
-                colAgachado.enabled = true;
-                colParado.enabled = false;
-
-                cabeza.SetActive(true);
-                eAgachado = true;
+                    cabeza.SetActive(true);
+                    eAgachado = true;
+                }
             }
             else
             {
@@ -114,16 +116,17 @@ public class PlayerMoves : MonoBehaviour
         {
             falling();
         }
-
+        
         if (ObjectToPickup != null && ObjectToPickup.GetComponent<PickeableObj>().isPickeable == true && PickedObj == null)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E) && !eAgachado )
             {
+                velInicial = velBox;
+                animator.SetBool("Box", true);
                 PickedObj = ObjectToPickup;
                 PickedObj.GetComponent<PickeableObj>().isPickeable = false;
                 PickedObj.transform.SetParent(interactionZone);
                 PickedObj.transform.position = interactionZone.position;
-                PickedObj.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
                 PickedObj.GetComponent<Rigidbody>().useGravity = false;
                 PickedObj.GetComponent<Rigidbody>().isKinematic = true;
 
@@ -133,6 +136,7 @@ public class PlayerMoves : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
+                animator.SetBool("Box", false);
                 PickedObj.GetComponent<PickeableObj>().isPickeable = true;
                 PickedObj.transform.SetParent(null);
                 PickedObj.GetComponent<Rigidbody>().useGravity = true;

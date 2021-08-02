@@ -11,10 +11,6 @@ public class Cameras : MonoBehaviour
         cams.enabled = false;
     }
 
-    void Update()
-    {
-        
-    }
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
