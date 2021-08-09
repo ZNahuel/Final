@@ -86,7 +86,6 @@ public class PlayerMoves : MonoBehaviour
             if (Input.GetKey(KeyCode.LeftControl))
             {
                 animator.SetBool("crounch", true);
-                //runSpeed = velAgachado;
                 if (PickedObj == null)
                 {
                     colAgachado.enabled = true;
@@ -101,8 +100,6 @@ public class PlayerMoves : MonoBehaviour
                 if (HeadCollition.contadorDeColision <= 0)
                 {
                     animator.SetBool("crounch", false);
-                    //runSpeed = velInicial;
-
                     cabeza.SetActive(false);
                     colAgachado.enabled = false;
                     colParado.enabled = true;
@@ -147,7 +144,7 @@ public class PlayerMoves : MonoBehaviour
     }
     public void falling()
     {
-        animator.SetBool("touchGround", false);
-        animator.SetBool("jump", false);
+            animator.SetBool("touchGround", false);
+            animator.SetBool("jump", false);
     }
 }

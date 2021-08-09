@@ -9,6 +9,7 @@ TagManager:
   - wall
   - CamCol
   - InteracionZone
+  - Box
   layers:
   - Default
   - TransparentFX
